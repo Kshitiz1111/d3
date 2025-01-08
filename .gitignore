@@ -1,0 +1,68 @@
+# General
+
+# Ignore node_modules folder
+node_modules/
+
+# Ignore logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore environment variables
+.env
+.env.local
+.env.*.local
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore package lock and yarn lock files (optional, if you prefer not to track them)
+package-lock.json
+yarn.lock
+
+# Ignore IDE and editor configuration
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Ignore coverage reports
+coverage/
+
+# Ignore compiled files
+*.class
+*.pyc
+*.pyo
+*.exe
+*.dll
+*.out
+*.obj
+
+# Ignore macOS ._ resource forks
+._*
+
+# Ignore temporary files
+*.swp
+*.tmp
+*.bak
+*.old
+*.orig
+
+# Ignore Python virtual environments
+venv/
+.venv/
+
+# Ignore specific language-related files
+*.tsbuildinfo # TypeScript incremental build files
+
+# Ignore miscellaneous
+*.iml # IntelliJ IDEA module files
