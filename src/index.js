@@ -4,11 +4,11 @@ import { select } from "d3";
 const width = window.innerWidth;
 const height = window.innerHeight;
 
-const svg = select('body').append('svg').attr('width', width).attr('height', height);
+const svg = select('body').append('svg').attr('width', width).attr('height', height)
 
 let data;
 try {
-  data = await getData(width, height);
+  data = await getData(width, height, svg);
 } catch (error) {
   console.error(error)
 }
@@ -19,3 +19,4 @@ svg.selectAll('circle')
   .attr('r', 5)
   .attr('cx', (d) => d.x)
   .attr('cy', (d) => d.y)
+

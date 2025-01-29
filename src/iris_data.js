@@ -1,4 +1,4 @@
-import { csv, extent, scaleLinear } from "d3"
+import { axisBottom, axisLeft, csv, extent, scaleLinear } from "d3"
 
 
 const csvUrl = [
@@ -20,6 +20,13 @@ const parseRow = (d) => {
 const xValue = (d) => d.petal_length;
 const yValue = (d) => d.sepal_length;
 
+const margin = {
+  top: 100,
+  bottom: 100,
+  right: 100,
+  left: 100
+}
+
 async function getDataFromCsvUrl() {
   try {
     const data = await csv(csvUrl, parseRow);
@@ -31,17 +38,19 @@ async function getDataFromCsvUrl() {
   }
 }
 
-export const getData = async (weight, height) => {
+export const getData = async (weight, height, svg) => {
   if (getDataFromCsvUrl()) {
     const data = await getDataFromCsvUrl();
 
-    const x = scaleLinear().domain(extent(data, xValue)).range([0, weight]);
-    const y = scaleLinear().domain(extent(data, yValue)).range([height, 0]);
+    const x = scaleLinear().domain(extent(data, xValue)).range([margin.left, weight - margin.right]);
+    const y = scaleLinear().domain(extent(data, yValue)).range([height - margin.bottom, margin.top]);
 
     const marks = data.map(d => ({
       x: x(d.petal_length),
       y: y(d.sepal_length)
     }))
+    svg.append('g').attr('transform', `translate(${margin.right},0)`).call(axisLeft(y))
+    svg.append('g').attr('transform', `translate(0,${height - margin.bottom})`).call(axisBottom(x))
     return marks;
   }
 
